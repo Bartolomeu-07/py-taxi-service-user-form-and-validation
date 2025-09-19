@@ -42,7 +42,7 @@ class DriverCreationForm(UserCreationForm):
         )
 
 
-class DriverUpdateForm(ModelForm):
+class DriverLicenseUpdateForm(ModelForm):
 
     class Meta:
         model = Driver
