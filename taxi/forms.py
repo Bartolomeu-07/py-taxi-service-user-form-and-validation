@@ -2,7 +2,11 @@ import re
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, ModelMultipleChoiceField, CheckboxSelectMultiple
+from django.forms import (
+    ModelForm,
+    ModelMultipleChoiceField,
+    CheckboxSelectMultiple,
+)
 from django.contrib.auth.forms import UserCreationForm
 from django.forms.formsets import formset_factory
 
@@ -33,7 +37,9 @@ class DriverCreationForm(UserCreationForm):
         if pat.fullmatch(license_number):
             return license_number
 
-        raise ValidationError("The format should be: 3 uppercase letters + 5 digits")
+        raise ValidationError(
+            "The format should be: 3 uppercase letters + 5 digits"
+        )
 
 
 class DriverUpdateForm(ModelForm):
@@ -48,4 +54,6 @@ class DriverUpdateForm(ModelForm):
         if pat.fullmatch(license_number):
             return license_number
 
-        raise ValidationError("The format should be: 3 uppercase letters + 5 digits")
+        raise ValidationError(
+            "The format should be: 3 uppercase letters + 5 digits"
+        )
