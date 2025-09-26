@@ -36,7 +36,9 @@ class DriverCreationForm(UserCreationForm):
         if pat.fullmatch(license_number):
             return license_number
 
-        raise ValidationError("The format should be: 3 uppercase letters + 5 digits")
+        raise ValidationError(
+            "The format should be: 3 uppercase letters + 5 digits"
+        )
 
 
 class DriverLicenseUpdateForm(ModelForm):
@@ -51,4 +53,6 @@ class DriverLicenseUpdateForm(ModelForm):
         if pat.fullmatch(license_number):
             return license_number
 
-        raise ValidationError("The format should be: 3 uppercase letters + 5 digits")
+        raise ValidationError(
+            "The format should be: 3 uppercase letters + 5 digits"
+        )
