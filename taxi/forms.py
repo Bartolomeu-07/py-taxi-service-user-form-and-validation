@@ -8,9 +8,8 @@ from django.forms import (
     CheckboxSelectMultiple,
 )
 from django.contrib.auth.forms import UserCreationForm
-from django.forms.formsets import formset_factory
 
-from .models import Driver, Car
+from .models import Car
 
 pat = re.compile(r"^[A-Z]{3}[0-9]{5}$")
 
@@ -28,7 +27,7 @@ class CarForm(ModelForm):
 class DriverCreationForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
-        model = Driver
+        model = get_user_model()
         fields = UserCreationForm.Meta.fields + ("license_number",)
 
     def clean_license_number(self):
@@ -37,15 +36,13 @@ class DriverCreationForm(UserCreationForm):
         if pat.fullmatch(license_number):
             return license_number
 
-        raise ValidationError(
-            "The format should be: 3 uppercase letters + 5 digits"
-        )
+        raise ValidationError("The format should be: 3 uppercase letters + 5 digits")
 
 
 class DriverLicenseUpdateForm(ModelForm):
 
     class Meta:
-        model = Driver
+        model = get_user_model()
         fields = ("license_number",)
 
     def clean_license_number(self):
@@ -54,6 +51,4 @@ class DriverLicenseUpdateForm(ModelForm):
         if pat.fullmatch(license_number):
             return license_number
 
-        raise ValidationError(
-            "The format should be: 3 uppercase letters + 5 digits"
-        )
+        raise ValidationError("The format should be: 3 uppercase letters + 5 digits")
